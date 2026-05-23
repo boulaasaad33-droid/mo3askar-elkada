@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معسكر القادة - مفاجأة للجوالة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+
+        *{
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            background-color:#000;
+            color:#0f0;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family:'Cairo',sans-serif;
+            padding:10px;
+            overflow-x:hidden;
+            transition:background-color 0.5s ease;
+        }
+
+        .container{
+            text-align:center;
+            width:100%;
+            max-width:600px;
+            margin:0 auto;
+        }
+
+        #hacked-screen{
+            font-family:'Courier New', Courier, monospace;
+            font-size:1.1rem;
+            font-weight:bold;
+            line-height:2;
+        }
+
+        .glitch{
+            animation:pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse{
+            from{
+                opacity:1;
+                text-shadow:0 0 10px #0f0;
+            }
+
+            to{
+                opacity:0.4;
+                text-shadow:0 0 20px #0f0;
+            }
+        }
+
+        #warning-screen,
+        #name-screen{
+            display:none;
+        }
+
+        .alert-text{
+            color:#ff3333;
+            font-size:1.8rem;
+            margin-bottom:15px;
+            font-weight:bold;
+        }
+
+        .input-box{
+            background:#111;
+            border:2px solid #0f0;
+            padding:25px 15px;
+            border-radius:15px;
+            box-shadow:0 0 20px rgba(0,255,0,0.2);
+        }
+
+        input[type="text"]{
+            width:85%;
+            max-width:280px;
+            padding:12px;
+            font-size:1.1rem;
+            border:2px solid #0f0;
+            background:#000;
+            color:#fff;
+            border-radius:8px;
+            text-align:center;
+            outline:none;
+            margin-bottom:20px;
+        }
+
+        .btn{
+            padding:12px 30px;
+            font-size:1.1rem;
+            background:#0f0;
+            color:#000;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:bold;
+            transition:0.3s;
+            box-shadow:0 4px 10px rgba(0,255,0,0.3);
+        }
+
+        .btn:hover{
+            background:#fff;
+            color:#000;
+            box-shadow:0 0 15px #fff;
+        }
+
+        #certificate-container{
+            display:none;
+            width:100%;
+            animation:fadeIn 1s ease-in-out;
+        }
+
+        .certificate-wrapper{
+            position:relative;
+            width:100%;
+            max-width:1000px;
+            margin:0 auto 20px auto;
+            display:block;
+        }
+
+        .cert-img{
+            width:100%;
+            height:auto;
+            display:block;
+            border-radius:4px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.6);
+        }
+
+        /* الاسم */
+
+        #display-name{
+            position:absolute;
+
+            top:38.8%;
+            right:31%;
+
+            width:32%;
+
+            font-size:calc(0.45rem + 1vw);
+
+            font-weight:bold;
+            color:#142c16;
+
+            font-family:'Cairo',sans-serif;
+
+            text-align:right;
+
+            white-space:nowrap;
+            line-height:1;
+        }
+
+        /* التاريخ */
+
+        #display-date{
+            position:absolute;
+
+            bottom:11.8%;
+            right:10.5%;
+
+            width:18%;
+
+            font-size:calc(0.35rem + 0.8vw);
+
+            font-weight:bold;
+            color:#142c16;
+
+            font-family:'Cairo',sans-serif;
+
+            text-align:center;
+
+            white-space:nowrap;
+            line-height:1;
+        }
+
+        .download-btn{
+            background:#142c16;
+            color:#fff;
+            box-shadow:0 4px 15px rgba(20,44,22,0.4);
+            border:1px solid #0f0;
+            width:90%;
+            max-width:320px;
+        }
+
+        .download-btn:hover{
+            background:#fff;
+            color:#142c16;
+            box-shadow:0 4px 15px rgba(255,255,255,0.5);
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="hacked-screen" class="glitch">
+
+            <p>> جاري الاتصال بالسيرفر المركزي...</p>
+
+            <p>> تم الوصول للملفات بنجاح...</p>
+
+            <br>
+
+            <h1 style="font-size:2rem;">
+                [ تم اختراقك بنجاح! ]
+            </h1>
+
+        </div>
+
+        <div id="warning-screen">
+
+            <p class="alert-text">
+                ⚠️ تحذير أمني خطير ⚠️
+            </p>
+
+            <p style="font-size:1.1rem;color:#fff;">
+                تم سحب جميع بيانات جهازك وصورك الشخصية وسيتم تشفيرها الآن!
+            </p>
+
+        </div>
+
+        <div id="name-screen" class="input-box">
+
+            <h1 style="font-size:1.8rem;margin-bottom:15px;">
+                😂 لا ده احنا كنا بنهزر معاك يا جوال!
+            </h1>
+
+            <h2 style="font-weight:normal;color:#e0e0e0;font-size:1.1rem;">
+                مفيش اختراق ولا حاجه مقلب خفيف كده 😉
+            </h2>
+
+            <p style="color:#aaa;margin-bottom:25px;font-size:0.95rem;">
+                اكتب اسمك هنا علشان تستلم شهادتك يا بطل:
+            </p>
+
+            <input
+                type="text"
+                id="joal-name"
+                placeholder="اكتب اسمك هنا..."
+                autocomplete="off"
+            >
+
+            <br>
+
+            <button class="btn" onclick="showCertificate()">
+                اضغط هنا يا بطل
+            </button>
+
+        </div>
+
+        <div id="certificate-container">
+
+            <div id="catch-certificate" class="certificate-wrapper">
+
+                <img
+                    class="cert-img"
+                    src="https://d.top4top.io/p_3794uh46j0.png"
+                    alt="شهادة التقدير الكشفية"
+                >
+
+                <div id="display-name">
+                    جاري الكتابة...
+                </div>
+
+                <div id="display-date"></div>
+
+            </div>
+
+            <button
+                class="btn download-btn"
+                onclick="downloadPDF()"
+            >
+                📥 حمل شهادتك (PDF)
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        window.onload = function(){
+
+            setTimeout(function(){
+
+                document.getElementById('hacked-screen').style.display='none';
+
+                document.getElementById('warning-screen').style.display='block';
+
+                setTimeout(function(){
+
+                    document.getElementById('warning-screen').style.display='none';
+
+                    document.body.style.backgroundColor='#121212';
+
+                    document.getElementById('name-screen').style.display='block';
+
+                },3000);
+
+            },3000);
+
+            var today = new Date();
+
+            var dateStr = today.toLocaleDateString('ar-EG');
+
+            document.getElementById('display-date').innerText = dateStr;
+
+        };
+
+        function showCertificate(){
+
+            var nameInput = document.getElementById('joal-name').value.trim();
+
+            if(nameInput === ""){
+
+                alert("اكتب اسمك الاول يا قائد علشان نطبعه على الشهاده 😉");
+
+                return;
+
+            }
+
+            document.getElementById('name-screen').style.display='none';
+
+            document.getElementById('display-name').innerText=nameInput;
+
+            document.body.style.backgroundColor='#0b130c';
+
+            document.getElementById('certificate-container').style.display='block';
+
+        }
+
+        function downloadPDF(){
+
+            var element = document.getElementById('catch-certificate');
+
+            var scoutName = document.getElementById('joal-name').value.trim();
+
+            var opt = {
+
+                margin:0,
+
+                filename:'شهادة_معسكر_القادة_' + scoutName + '.pdf',
+
+                image:{
+                    type:'jpeg',
+                    quality:1.0
+                },
+
+                html2canvas:{
+                    scale:3,
+                    useCORS:true,
+                    scrollX:0,
+                    scrollY:0
+                },
+
+                jsPDF:{
+                    unit:'px',
+                    format:[1000,750],
+                    orientation:'landscape'
+                }
+
+            };
+
+            html2pdf().set(opt).from(element).save();
+
+        }
+
+    </script>
+
+</body>
+</html>
